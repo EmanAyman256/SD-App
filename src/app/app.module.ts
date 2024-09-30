@@ -7,7 +7,7 @@ import { MainitemsComponent } from './components/mainitems/mainitems.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/mainitems/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FundamentalNgxCoreModule } from '@fundamental-ngx/core';
+import { FundamentalNgxCoreModule, MessageToastModule } from '@fundamental-ngx/core';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { MenuItem } from 'primeng/api';
@@ -28,6 +28,9 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
 import { AlertComponent } from './shared/alert/alert.component';
 import { TruncateWordsPipe } from './pipes/truncate-words.pipe';
 import { SearchPipe } from './pipes/search.pipe';
+import { ConfirmationService } from 'primeng/api'; 
+import { ConfirmDialogModule } from 'primeng/confirmdialog';  // Import ConfirmDialogModule
+ // Import ConfirmationService
 
 @NgModule({
   declarations: [
@@ -61,7 +64,11 @@ import { SearchPipe } from './pipes/search.pipe';
     OAuthModule.forRoot(),  // Import the OAuthModule here
     DropdownModule,
     InputNumberModule,
-    MenuModule
+    MenuModule,
+    ConfirmDialogModule,
+    MessageToastModule,
+  
+
   ],
   providers: [
     {

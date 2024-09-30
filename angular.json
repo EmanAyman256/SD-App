@@ -83,6 +83,9 @@
             "production": {
               "browserTarget": "SD-App:build:production"
             },
+            "options":{
+              "proxyConfig": "proxy.conf.json"
+            },
             "development": {
               "browserTarget": "SD-App:build:development"
             }
@@ -91,8 +94,7 @@
           "defaultConfiguration": "development",
         
           "options": {
-            "browserTarget": "SD-App:build",
-            "proxyConfig": "proxy.conf.json"
+            "browserTarget": "SD-App:build"
           }
         },
         "extract-i18n": {

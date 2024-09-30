@@ -8,7 +8,7 @@
       }
     },
     "/auth": {
-      "target": "https://authentication.us10.hana.ondemand.com/oauth/token",
+      "target": "https://aji26ufcs.trial-accounts.ondemand.com/oauth2/token",
       "secure": false,
       "changeOrigin": true,
       "pathRewrite": {

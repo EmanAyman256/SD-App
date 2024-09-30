@@ -8,10 +8,15 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AuthService {
   private authUrl =  "/auth";
-  private clientID = "sb-na-979d7117-f6cf-436f-b1b6-e29a102bd5d1!i2141"
   baseUrl="/api"
-  private clientsecret="T/kd87uzEDSHzyVTIeXviQY7R1Y="
-  private  proxyurl = "https://cors-anywhere.herokuapp.com/";
+  // private clientID = "sb-na-979d7117-f6cf-436f-b1b6-e29a102bd5d1!i2141"
+  // private clientsecret="T/kd87uzEDSHzyVTIeXviQY7R1Y="
+  // private  proxyurl = "https://cors-anywhere.herokuapp.com/";
+  private clientID="623a6227-8cde-424a-9d03-ee5fe8f6baba"
+  private clientsecret="3YOtFRjTzaeWSzTV6/_Ud2GD6OxrYZcD-"
+  // authUrl="https://anjbwp8zl.trial-accounts.ondemand.com/oauth2/token"
+  // baseUrl="https://sd-cf.cfapps.us10-001.hana.ondemand.com"
+
   loggedInUser = new BehaviorSubject<AuthModel | null>(null);
   private tokenExpirationTimer: any;
   constructor(private http: HttpClient) {}
