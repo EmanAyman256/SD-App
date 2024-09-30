@@ -1,0 +1,9 @@
+---
+applications:
+- name: sd-app-tendering
+  instances: 1
+  memory: 1G
+  buildpacks: 
+  - staticfile_buildpack
+
+

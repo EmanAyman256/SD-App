@@ -1,0 +1,20 @@
+{
+    "/api": {
+      "target": "https://spring-security-hybrid-usage-00-00.cfapps.us10-001.hana.ondemand.com",
+      "secure": false,
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/api": ""
+      }
+    },
+    "/auth": {
+      "target": "https://authentication.us10.hana.ondemand.com/oauth/token",
+      "secure": false,
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/auth": ""
+      }
+    }
+   
+  }
+  
