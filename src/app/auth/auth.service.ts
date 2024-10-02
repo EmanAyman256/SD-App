@@ -4,20 +4,15 @@ import { tap } from 'rxjs/operators';
 import { AuthModel, AuthResponseBackend } from './models/user.model';
 import { BehaviorSubject, throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import { environment } from '../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
-  // private clientID = "sb-na-979d7117-f6cf-436f-b1b6-e29a102bd5d1!i2141"
-  // private clientsecret="T/kd87uzEDSHzyVTIeXviQY7R1Y="
-  // private  proxyurl = "https://cors-anywhere.herokuapp.com/";
-  // authUrl="https://aji26ufcs.trial-accounts.ondemand.com/oauth2/token"
-  // baseUrl="https://spring-security-hybrid-usage-00-00.cfapps.us10-001.hana.ondemand.com"
-  
-  private authUrl =  "https://express-proxy-app.cfapps.ap21.hana.ondemand.com/auth";
-  baseUrl="https://express-proxy-app.cfapps.ap21.hana.ondemand.com/api"
-  private clientID="623a6227-8cde-424a-9d03-ee5fe8f6baba"
-  private clientsecret="3YOtFRjTzaeWSzTV6/_Ud2GD6OxrYZcD-"
+export class AuthService {  
+  private authUrl = environment.authUrl;
+  baseUrl=environment.apiUrl
+  private clientID=environment.clientId
+  private clientsecret=environment.secretClient
   loggedInUser = new BehaviorSubject<AuthModel | null>(null);
   private tokenExpirationTimer: any;
   constructor(private http: HttpClient,private router:Router) {}

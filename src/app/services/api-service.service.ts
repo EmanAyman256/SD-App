@@ -2,14 +2,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiServiceService {
-  // baseUrl="https://spring-security-hybrid-usage-00-00.cfapps.us10-001.hana.ondemand.com"
-  baseUrl="https://express-proxy-app.cfapps.ap21.hana.ondemand.com/api"
-
+  baseUrl=environment.apiUrl
    userToken=localStorage.getItem("token")
    constructor(private http:HttpClient,private auth:AuthService) {
   }
