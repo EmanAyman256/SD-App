@@ -13,6 +13,7 @@ import { ButtonModule } from 'primeng/button';
 import { MenuItem } from 'primeng/api';
 import { DropdownModule } from 'primeng/dropdown';
 import { MenuModule } from 'primeng/menu';
+import { ToastModule } from 'primeng/toast';
 import {AuthInterceptor} from './auth/auth.interceptor'
 import { SplitButton, SplitButtonModule } from 'primeng/splitbutton';
 import { InputTextModule } from 'primeng/inputtext';
@@ -67,6 +68,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';  // Import ConfirmD
     MenuModule,
     ConfirmDialogModule,
     MessageToastModule,
+    ToastModule,
+    
   
 
   ],

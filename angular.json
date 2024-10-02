@@ -54,9 +54,11 @@
             "production": {
               "budgets": [
                 {
-                  "type": "initial",
-                "maximumWarning": "4mb", 
-                 "maximumError": "5mb"
+                  
+                    "type": "initial",
+                    "maximumWarning": "5mb",
+                    "maximumError": "5mb"
+                  
                 },
                 {
                   "type": "anyComponentStyle",
@@ -67,11 +69,12 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
-              "optimization": false,
+              "buildOptimizer": true,
+              "optimization": true,
               "vendorChunk": true,
-              "extractLicenses": false,
+              "extractLicenses": true,
               "sourceMap": true,
+              "outputHashing": "all",
               "namedChunks": true
             }
           },
@@ -84,7 +87,6 @@
               "browserTarget": "SD-App:build:production"
             },
             "options":{
-              "proxyConfig": "proxy.conf.json"
             },
             "development": {
               "browserTarget": "SD-App:build:development"

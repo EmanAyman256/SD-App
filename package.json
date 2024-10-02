@@ -28,6 +28,7 @@
     "bootstrap": "^5.3.3",
     "file-saver": "^2.0.5",
     "fundamental-styles": "0.32.0",
+    "jwt-decode": "^4.0.0",
     "make": "^0.8.1",
     "ng-http-loader": "^16.1.0",
     "primeflex": "^3.3.1",

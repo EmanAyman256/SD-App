@@ -1,63 +1,61 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { catchError, throwError } from 'rxjs';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { catchError, first, throwError } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { OAuthService } from 'angular-oauth2-oidc';
+import { AlertService } from 'src/app/shared/alert.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  error!:string
-  constructor(private oauthService: OAuthService,private Authservice:AuthService,private router:Router){}
-  loginForm=new FormGroup({
-    email:new FormControl("",[Validators.required,Validators.email]),
-    password:new FormControl("",[Validators.required,Validators.minLength(6)])});
-  isLoading=false;
-  isSubmitted=false;
+  form!: FormGroup;
+  loading = false;
+  submitted = false;
+  error!: string;
 
-  get emailIsInvalid()
-  {
-    return(
-      this.loginForm.controls.email.touched &&
-      this.loginForm.controls.email.dirty &&
-      this.loginForm.controls.email.invalid
-    )
-  }
-  get passwordIsInvalid()
-  {
-    return(
-      this.loginForm.controls.password.touched &&
-      this.loginForm.controls.password.dirty &&
-      this.loginForm.controls.password.invalid
-    )
+  constructor(
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+
+    private router: Router,
+    private authService: AuthService,
+     private alertService: AlertService
+  ) { }
+
+  ngOnInit() {
+    this.form = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', [Validators.required, Validators.min(6)]]
+    });
   }
 
+  // for easy access to form fields
+  get f() { return this.form.controls; }
 
-  onSubmit()
-  {
-    const email=this.loginForm.value.email!;
-    const password=this.loginForm.value.password!
-    
-    this.Authservice.Login(email,password).pipe(
-      catchError((error:HttpErrorResponse)=>{
-          this.error=error.message
-          console.log(error);
-          
-          return throwError(() => new Error(error.message));
-      })
-    ).subscribe(data=>
-    {
-      console.log(data);
-      console.log("Success Login");
-      
-      this.router.navigate(['tendering'])
-      
+  onSubmit() {
+    this.submitted = true;
+     // reset alerts on submit
+     this.alertService.clear();
+
+    if (this.form.invalid) {
+      return;
     }
-    )
+    this.loading = true;
+    this.authService.Login(this.f['username'].value, this.f['password'].value)
+      .pipe(first())
+      .subscribe({
+        next: () => {
+          this.router.navigate(['/tendering']);
+        },
+        error: error => {
+          this.alertService.error(error);
+          this.loading = false;
+        }
+      });
   }
 
 }

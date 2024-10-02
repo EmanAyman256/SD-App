@@ -2,8 +2,11 @@
 <div class="container-fluid mt-5 pt-5 pb-5">
   <div class="row">
     <div class="col-md-12">
+        <p-toast />
       <div class="bg-primary-subtle shadow mb-5">
+
         <p-toolbar>
+
           <div class="p-toolbar-group-start">
             <h6>1.0 Exacavation</h6>
         </div>
@@ -48,6 +51,8 @@
     </p-card>
     </div>
   </div>
+  <p-toast></p-toast>
+
   <p-table [value]="mainItemsRecords |search:searchKey" dataKey="invoiceMainItemCode" [resizableColumns]="true"
   [expandedRowKeys]="expandedRows" editMode="row"
   [rowHover]="true"
@@ -66,12 +71,10 @@
           </div>
       </div>
   </ng-template>
-
   <ng-template pTemplate="header">
       <tr>
           <th style="min-width: 10rem;"> </th>
           <th style="min-width: 10rem;">
-              <!-- <p-checkbox (onChange)="onSelectAllRecords($event)" [value]="invoicesRecords"></p-checkbox> -->
           </th>
           <th style="min-width: 10rem;">Print </th>
           <th style="min-width: 10rem;"> MainItem.No </th>
@@ -154,11 +157,11 @@
               <p-cellEditor>
                   <ng-template pTemplate="input">
                       <ng-container *ngIf="!updateSelectedServiceNumberRecord">
-                          <input pInputText type="text" [(ngModel)]="mainItem.description" class="rounded-input"
+                          <input pInputText class="form-control" type="text" [(ngModel)]="mainItem.description" class="rounded-input"
                               pTooltip="{{ mainItem.description }}" tooltipPosition="top" [autoHide]="false">
                       </ng-container>
                       <ng-container *ngIf="updateShortTextChangeAllowed && updateSelectedServiceNumberRecord">
-                          <input pInputText type="text" [ngModel]="updateSelectedServiceNumberRecord.description"
+                          <input class="form-control" pInputText type="text" [ngModel]="updateSelectedServiceNumberRecord.description"
                               class="rounded-input" (ngModelChange)="updateShortText = $event"
                               pTooltip="{{ mainItem.description }}" tooltipPosition="top" [autoHide]="false">
                       </ng-container>
@@ -171,7 +174,6 @@
                       </ng-container>
                   </ng-template>
                   <ng-template pTemplate="output">
-                      <!-- {{ mainItem.description }} -->
                       <div class="">
                           <div class="" pTooltip="{{ mainItem.description }}" tooltipPosition="top"
                               [autoHide]="false">
@@ -186,7 +188,7 @@
               <p-cellEditor>
                   <ng-template pTemplate="input">
                       <ng-container *ngIf="!updatedFormulaRecord">
-                          <input pInputNumber class="rounded-input" [min]="0" type="number"
+                          <input pInputNumber class="form-control rounded-input" [min]="0" type="number"
                               [(ngModel)]="mainItem.quantity">
                       </ng-container>
                       <ng-container *ngIf="updatedFormulaRecord && resultAfterTestUpdate">
@@ -247,23 +249,13 @@
               </p-cellEditor>
           </td>
           <td style="min-width: 9.5rem;">
-              <button class="mb-2" (click)="openPopupUpdate()">Enter Parameters</button>
-              <!-- <ng-container *ngIf="showPopupUpdate && updatedFormulaRecord">
-                  <div class="popup">
-                      <h3>Enter Parameters</h3>
-                      <div *ngFor="let parameterId of updatedFormulaRecord.parameterIds">
-                          <label class="form-label">{{ parameterId }}:</label>
-                          <input pInputNumber class="rounded-input" class="form-input" type="number" [min]="0"
-                              [(ngModel)]="parameterValuesUpdate[parameterId]">
-                      </div>
-                      <button class="form-button" (click)="saveParameters()">Save</button>
-                  </div>
-              </ng-container> -->
+              <!-- <button class="mb-2 " (click)="openPopupUpdate()">Enter Parameters</button> -->
+              <p-button label="Enter Parameters" severity="secondary" (click)="openPopupUpdate()"/>
           </td>
           <td style="min-width: 9.5rem;">
               <p-cellEditor>
                   <ng-template pTemplate="input">
-                      <input pInputNumber class="rounded-input" name="amountPerUnit" type="number" [min]="0"
+                      <input pInputNumber class="form-control rounded-input" name="amountPerUnit" type="number" [min]="0"
                           [(ngModel)]="mainItem.amountPerUnit">
 
                   </ng-template>
@@ -311,7 +303,7 @@
           <td style="min-width: 9.5rem;">
               <p-cellEditor>
                   <ng-template pTemplate="input">
-                      <input pInputNumber class="rounded-input" name="profitMargin" type="number" [min]="0"
+                      <input pInputNumber class="form-control rounded-input" name="profitMargin" type="number" [min]="0"
                           [(ngModel)]="mainItem.profitMargin">
 
                   </ng-template>
@@ -355,9 +347,6 @@
                           }}
 
                       </ng-container>
-                      <!-- <input pInputNumber name="totalWithProfit" type="number" [min]="0"
-                          [(ngModel)]="mainItem.totalWithProfit"> -->
-
                   </ng-template>
                   <ng-template pTemplate="output">
                       {{ mainItem.totalWithProfit }}
@@ -685,11 +674,11 @@
                       </td>
                       <td style="min-width: 10.2rem;">
                           <ng-container *ngIf="!selectedServiceNumberRecordSubItem">
-                              <input pInputText type="text" class="rounded-input" [(ngModel)]="newSubItem.description"
+                              <input pInputText type="text" class="form-control rounded-input" [(ngModel)]="newSubItem.description"
                                   pTooltip="{{ newSubItem.description }}" tooltipPosition="top" [autoHide]="false">
                           </ng-container>
                           <ng-container *ngIf="shortTextChangeAllowedSubItem && selectedServiceNumberRecordSubItem">
-                              <input pInputText type="text" class="rounded-input"
+                              <input pInputText type="text" class="form-control rounded-input"
                                   [(ngModel)]="selectedServiceNumberRecordSubItem.description"
                                   (ngModelChange)="shortTextSubItem = $event" pTooltip="{{ newSubItem.description }}"
                                   tooltipPosition="top" [autoHide]="false">
@@ -708,7 +697,7 @@
                               {{resultAfterTest | number:'1.2-2'}}
                           </ng-container>
                           <ng-container *ngIf="!selectedFormulaRecordSubItem">
-                              <input pInputNumber class="rounded-input" name="quantity" type="number" [min]="0"
+                              <input pInputNumber class=" form-control rounded-input" name="quantity" type="number" [min]="0"
                                   [(ngModel)]="newSubItem.quantity">
                           </ng-container>
                       </td>
@@ -748,22 +737,11 @@
                           </p-dropdown>
                       </td>
                       <td style="min-width: 10.2rem;">
-                          <button class="mb-2" (click)="openPopup()">Enter Parameters</button>
-                          <!-- <ng-container *ngIf="showPopup && selectedFormulaRecordSubItem ">
-                              <div class="popup">
-                                  <h3>Enter Parameters</h3>
-                                  <div *ngFor="let parameterId of selectedFormulaRecordSubItem.parameterIds">
-
-                                      <label class="form-label">{{ parameterId }}:</label>
-                                      <input class="rounded-input" class="form-input" pInputNumber type="number" [min]="0"
-                                          [(ngModel)]="parameterValues[parameterId]">
-                                  </div>
-                                  <button class="form-button" (click)="saveParameters()">Save</button>
-                              </div>
-                          </ng-container> -->
+                        <p-button label="Enter Parameters" severity="secondary" (click)="openPopupUpdate()"/>
+                        
                       </td>
                       <td style="min-width: 10.2rem;">
-                          <input pInputNumber class="rounded-input" name="amountPerUnit" type="number" [min]="0"
+                          <input pInputNumber class="form-control rounded-input" name="amountPerUnit" type="number" [min]="0"
                               [(ngModel)]="newSubItem.amountPerUnit">
                       </td>
                       <td style="min-width: 10.2rem;">
@@ -804,9 +782,6 @@
       </td>
   </ng-template>
 
-
-
-  <!-- <div *ngIf="showFooter"> -->
   <ng-template pTemplate="footer" class="mt-5">
       <tr style="border: 1px solid rgb(5, 57, 130);">
           <td style="min-width: 10rem;">
@@ -819,13 +794,8 @@
 
           </td>
           <td style="min-width: 10rem;">
-
           </td>
           <td style="min-width: 10rem;">
-              <!-- <p-radioButton name="type" value="S" [(ngModel)]="recordType" inputId="type" />
-                      <label for="type" class="ml-2">
-                          S
-                      </label> -->
           </td>
           <td style="min-width: 10rem;">
               <p-dropdown [options]="recordsServiceNumber" [(ngModel)]="selectedServiceNumber"
@@ -842,29 +812,27 @@
           </td>
           <td style="min-width: 10rem;">
               <ng-container *ngIf="!selectedServiceNumberRecord">
-                  <input pInputText class="rounded-input" type="text" [(ngModel)]="newMainItem.description"
+                  <input pInputText class="form-control rounded-input" type="text" [(ngModel)]="newMainItem.description"
                       pTooltip="{{ newMainItem.description }}" tooltipPosition="top" [autoHide]="false">
               </ng-container>
               <ng-container *ngIf="shortTextChangeAllowed && selectedServiceNumberRecord">
-                  <input pInputText class="rounded-input" type="text"
+                  <input pInputText class="form-control rounded-input" type="text"
                       [(ngModel)]="selectedServiceNumberRecord.description" (ngModelChange)="shortText = $event"
                       pTooltip="{{ newMainItem.description }}" tooltipPosition="top" [autoHide]="false">
               </ng-container>
               <ng-container *ngIf="!shortTextChangeAllowed && selectedServiceNumberRecord">
-                  <!-- {{ selectedServiceNumberRecord.description }} -->
                   <div class="text-ellipsis" [pTooltip]="selectedServiceNumberRecord.description"
                       tooltipPosition="top" [autoHide]="false">
                       {{ selectedServiceNumberRecord.description | truncateWords }}
                   </div>
               </ng-container>
-              <!-- <input pInputText name="description" type="text" [(ngModel)]="newMainItem.description"> -->
           </td>
           <td style="min-width: 10rem;">
               <ng-container *ngIf=" selectedFormula && selectedFormulaRecord && resultAfterTest">
                   {{resultAfterTest | number:'1.2-2'}}
               </ng-container>
               <ng-container *ngIf="!selectedFormulaRecord">
-                  <input pInputNumber class="rounded-input" name="quantity" type="number" [min]="0"
+                  <input pInputNumber class="form-control rounded-input" name="quantity" type="number" [min]="0"
                       [(ngModel)]="newMainItem.quantity">
               </ng-container>
           </td>
@@ -902,25 +870,13 @@
               </p-dropdown>
           </td>
           <td style="min-width: 10rem;">
-              <button class="mb-2" (click)="openPopup()">Enter Parameters</button>
-              <!-- <ng-container *ngIf="showPopup && selectedFormulaRecord ">
-                  <div class="popup">
-                      <h3>Enter Parameters</h3>
-                      <div *ngFor="let parameterId of selectedFormulaRecord.parameterIds">
-
-                          <label class="form-label">{{ parameterId }}:</label>
-                          <input  class="form-input " pInputNumber type="number" [min]="0"
-                              [(ngModel)]="parameterValues[parameterId]">
-                      </div>
-                      <button class="form-button" (click)="saveParameters()">Save</button>
-                  </div>
-              </ng-container> -->
+            <p-button label="Enter Parameters" severity="secondary" (click)="openPopupUpdate()"/>
+            
           </td>
           <td style="min-width: 10rem;">
-              <input pInputNumber class="rounded-input" name="amountPerUnit" type="number" [min]="0"
+              <input pInputNumber class="form-control rounded-input" name="amountPerUnit" type="number" [min]="0"
                   [(ngModel)]="newMainItem.amountPerUnit">
           </td>
-          <!-- update into currency fields -->
           <td style="min-width: 10rem;">
               <p-dropdown [options]="recordsCurrency" [(ngModel)]="selectedCurrency"
                   [ngModelOptions]="{standalone: true}" optionValue="code" optionLabel="code" [filter]="true"
@@ -940,10 +896,9 @@
               <ng-container *ngIf="!selectedFormulaRecord">
                   {{ (newMainItem.quantity ?? 0) * (newMainItem.amountPerUnit ?? 0) | number:'1.2-2' }}
               </ng-container>
-              <!-- <input pInputNumber name="total" type="number" [min]="0" [(ngModel)]="newMainItem.total"> -->
           </td>
           <td style="min-width: 10rem;">
-              <input pInputNumber class="rounded-input" name="profitMargin" type="number" [min]="0"
+              <input pInputNumber class="form-control rounded-input" name="profitMargin" type="number" [min]="0"
                   [(ngModel)]="newMainItem.profitMargin">
           </td>
           <td style="min-width: 10rem;">
@@ -951,8 +906,7 @@
               ? 0
               : ((newMainItem.amountPerUnit ?? 0) * ((newMainItem.profitMargin ?? 0)/100))+
               (newMainItem.amountPerUnit ?? 0) }}
-              <!-- <input pInputNumber name="amountPerUnitWithProfit" type="number" [min]="0"
-                      [(ngModel)]="newMainItem.amountPerUnitWithProfit"> -->
+           
           </td>
           <td style="min-width: 10rem;">
               <ng-container *ngIf="selectedFormulaRecord && resultAfterTest">
@@ -968,9 +922,6 @@
                   ?? 0)/100) )+ ( (newMainItem.quantity ?? 0) * (newMainItem.amountPerUnit ?? 0) )}}
 
               </ng-container>
-
-              <!-- <input pInputNumber name="totalWithProfit" type="number" [min]="0"
-                      [(ngModel)]="newMainItem.totalWithProfit"> -->
           </td>
           <td style="min-width: 10rem;">
               <button pButton type="button" icon="pi pi-plus" class="ui-button-info" label="Save MainItem"
@@ -979,8 +930,6 @@
           </td>
       </tr>
   </ng-template>
-
-  <!-- </div> -->
 </p-table>
 
 <div class="popup-container" *ngIf="showPopup && selectedFormulaRecord">

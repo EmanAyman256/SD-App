@@ -7,7 +7,8 @@ import { AuthService } from '../auth/auth.service';
   providedIn: 'root'
 })
 export class ApiServiceService {
-   baseUrl=`/api`
+  // baseUrl="https://spring-security-hybrid-usage-00-00.cfapps.us10-001.hana.ondemand.com"
+  baseUrl="https://express-proxy-app.cfapps.ap21.hana.ondemand.com/api"
 
    userToken=localStorage.getItem("token")
    constructor(private http:HttpClient,private auth:AuthService) {
