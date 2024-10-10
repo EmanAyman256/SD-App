@@ -11,6 +11,7 @@ import { environment } from '../environments/environment';
 export class AuthService {  
   private authUrl = environment.authUrl;
   baseUrl=environment.apiUrl
+  registerUrl=environment.usersUrl
   private clientID=environment.clientId
   private clientsecret=environment.secretClient
   loggedInUser = new BehaviorSubject<AuthModel | null>(null);
@@ -40,25 +41,26 @@ export class AuthService {
       );
   }
 
-  signUp(value: string, familyName: string, givenName: string, userName: string) {
+  signUp(userName: string, familyName: string, givenName: string, email: string,honorificPrefix:string) {
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
+       Authorization: 'Basic ' + btoa(`facbddf3-d119-4f36-bb81-0dc8a644a8cb:nY17h3A5/YsCGx0K3LsDGhzqp]FBJYZ?7o/`),
+      'Content-Type': 'application/scim+json',
+
     });
     const data = {
-      'value': value,
-      'familyName': familyName,
-      'givenName': givenName,
-      'userName': userName
+      "userName": userName,
+    "name": {
+        "givenName": givenName, 
+        "familyName": familyName,
+        "honorificPrefix": honorificPrefix
+    },
+    "emails": [{"value":email}]
     }
-    const config = {
-      maxBodyLength: Infinity,
-      headers,
-      body: JSON.stringify(data)
-    };
+ 
     console.log(data)
    return this.http
       .post<any>(
-        `${this.baseUrl}/iasusers`,
+        `${this.registerUrl}`,
         data, { headers:headers }
       )
 

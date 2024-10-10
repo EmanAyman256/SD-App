@@ -31,6 +31,7 @@ import { TruncateWordsPipe } from './pipes/truncate-words.pipe';
 import { SearchPipe } from './pipes/search.pipe';
 import { ConfirmationService } from 'primeng/api'; 
 import { ConfirmDialogModule } from 'primeng/confirmdialog';  // Import ConfirmDialogModule
+import { authConfig } from './auth/AuthConfig/auth.config';
  // Import ConfirmationService
 
 @NgModule({
@@ -93,5 +94,11 @@ export class AppModule {
   //   this.configureOAuth();
 
   // }
-
+  constructor(private oauthService: OAuthService) {
+    this.configure();
+  }
+  private configure() {
+    this.oauthService.configure(authConfig);
+    this.oauthService.loadDiscoveryDocumentAndTryLogin();
+  }
 }

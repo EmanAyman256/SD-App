@@ -23,7 +23,8 @@ export class LoginComponent {
 
     private router: Router,
     private authService: AuthService,
-     private alertService: AlertService
+     private alertService: AlertService,
+     private oauthService: OAuthService
   ) { }
 
   ngOnInit() {
@@ -49,6 +50,8 @@ export class LoginComponent {
       .pipe(first())
       .subscribe({
         next: () => {
+          // this.oauthService.initImplicitFlow();
+          // console.log(this.oauthService.initImplicitFlow());
           this.router.navigate(['/tendering']);
         },
         error: error => {
