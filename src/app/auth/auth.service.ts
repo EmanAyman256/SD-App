@@ -43,8 +43,8 @@ export class AuthService {
 
   signUp(userName: string, familyName: string, givenName: string, email: string,honorificPrefix:string) {
     const headers = new HttpHeaders({
-       Authorization: 'Basic ' + btoa(`facbddf3-d119-4f36-bb81-0dc8a644a8cb:nY17h3A5/YsCGx0K3LsDGhzqp]FBJYZ?7o/`),
-      'Content-Type': 'application/scim+json',
+      Authorization: 'Basic ' + btoa(`${this.clientID}:${this.clientsecret}`),
+      'Content-Type': 'application/x-www-form-urlencoded',
 
     });
     const data = {
