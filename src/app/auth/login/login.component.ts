@@ -4,7 +4,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, first, throwError } from 'rxjs';
 import { AuthService } from '../auth.service';
-import { OAuthService } from 'angular-oauth2-oidc';
 import { AlertService } from 'src/app/shared/alert.service';
 @Component({
   selector: 'app-login',
@@ -24,7 +23,6 @@ export class LoginComponent {
     private router: Router,
     private authService: AuthService,
      private alertService: AlertService,
-     private oauthService: OAuthService
   ) { }
 
   ngOnInit() {

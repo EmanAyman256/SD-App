@@ -31,8 +31,6 @@ import { TruncateWordsPipe } from './pipes/truncate-words.pipe';
 import { SearchPipe } from './pipes/search.pipe';
 import { ConfirmationService } from 'primeng/api'; 
 import { ConfirmDialogModule } from 'primeng/confirmdialog';  // Import ConfirmDialogModule
-import { authConfig } from './auth/AuthConfig/auth.config';
- // Import ConfirmationService
 
 @NgModule({
   declarations: [
@@ -63,14 +61,13 @@ import { authConfig } from './auth/AuthConfig/auth.config';
     CheckboxModule,
     ReactiveFormsModule,
     FormsModule,
-    OAuthModule.forRoot(),  // Import the OAuthModule here
     DropdownModule,
     InputNumberModule,
     MenuModule,
     ConfirmDialogModule,
     MessageToastModule,
     ToastModule,
-    
+    OAuthModule.forRoot()
   
 
   ],
@@ -80,25 +77,9 @@ import { authConfig } from './auth/AuthConfig/auth.config';
     useClass:AuthInterceptor,
     multi:true
   },
-  OAuthModule,
 ]
   ,
   bootstrap: [AppComponent]
 })
 export class AppModule { 
-  // private configureOAuth() {
-  //   this.oauthService.configure(authConfig);
-  //   this.oauthService.loadDiscoveryDocumentAndTryLogin();
-  // }
-  // constructor(private oauthService: OAuthService) {
-  //   this.configureOAuth();
-
-  // }
-  constructor(private oauthService: OAuthService) {
-    this.configure();
-  }
-  private configure() {
-    this.oauthService.configure(authConfig);
-    this.oauthService.loadDiscoveryDocumentAndTryLogin();
-  }
 }

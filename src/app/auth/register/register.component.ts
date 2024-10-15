@@ -3,8 +3,9 @@ import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, first, throwError } from 'rxjs';
-// import Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 import { AuthService } from '../auth.service';
+import { MessageService } from 'primeng/api';
 
 function equalValue(control:AbstractControl)
 {
@@ -19,7 +20,8 @@ function equalValue(control:AbstractControl)
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
+  providers:[MessageService]
 })
 export class RegisterComponent{
   form!: FormGroup;
@@ -31,11 +33,11 @@ export class RegisterComponent{
       private route: ActivatedRoute,
       private router: Router,
       private authService: AuthService,
+      private messageService: MessageService
   ) { }
 
   ngOnInit() {
       this.form = this.formBuilder.group({
-          honorprefix: ['', Validators.required],
           firstName: ['', Validators.required],
           lastName: ['', Validators.required],
           username: ['', Validators.required],
@@ -49,17 +51,23 @@ export class RegisterComponent{
           return;
       }
       this.loading = true;
-      this.authService.signUp(this.f['username'].value, this.f['firstName'].value, this.f['lastName'].value, this.f['email'].value,this.f['honorprefix'].value)
+      this.authService.signUp(this.f['username'].value, this.f['firstName'].value, this.f['lastName'].value, this.f['email'].value)
           .pipe(first())
           .subscribe({
               next: (response) => {
                   console.log(response);
-                  this.router.navigate(['/login'], { relativeTo: this.route });
-                  this.loading = false;
+                  Swal.fire({
+                    title: 'Registration Successful!',
+                    text: 'Please check your email for the activation link.',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    this.router.navigate(['/login'], { relativeTo: this.route });
+                });
               },
               error: error => {
                   this.loading = false;
-              }
+              },
+            
           });  
   }
 }

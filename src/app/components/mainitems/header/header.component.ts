@@ -16,9 +16,6 @@ export class HeaderComponent implements OnInit{
     this.authService.loggedInUser.subscribe(user=>{
       this.isAuthenticated=!!user
 
-      if(this.isAuthenticated){
-
-      }
     })
   }
   logout()

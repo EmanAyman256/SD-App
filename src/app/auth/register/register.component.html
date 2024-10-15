@@ -1,4 +1,5 @@
     <app-alert></app-alert>
+    <p-toast/>
     <div class=" container mt-5 pt-5">
         <div class="row">
             <div class="head mt-3">
@@ -8,13 +9,6 @@
         <div class="row">
             <div class="col-md-6 offset-md-3 ">
                 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-                    <div class="mb-3">
-                        <label class="form-label">Prefix</label>
-                        <input type="text" formControlName="honorprefix" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['honorprefix'].errors }" />
-                        <div *ngIf="submitted && f['honorprefix'].errors" class="invalid-feedback">
-                            <div *ngIf="f['honorprefix'].errors['required']">Honorprefix is required</div>
-                        </div>
-                    </div>
                     <div class="mb-3">
                         <label class="form-label">First Name</label>
                         <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['firstName'].errors }" />
@@ -37,7 +31,7 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">email</label>
+                        <label class="form-label">Email</label>
                         <input type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
                         <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
                             <div *ngIf="f['email'].errors['required']">Email is required</div>

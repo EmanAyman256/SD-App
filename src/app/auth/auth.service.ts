@@ -41,27 +41,19 @@ export class AuthService {
       );
   }
 
-  signUp(userName: string, familyName: string, givenName: string, email: string,honorificPrefix:string) {
-    const headers = new HttpHeaders({
-       Authorization: 'Basic ' + btoa(`facbddf3-d119-4f36-bb81-0dc8a644a8cb:nY17h3A5/YsCGx0K3LsDGhzqp]FBJYZ?7o/`),
-      'Content-Type': 'application/scim+json',
-
-    });
+  signUp(userName: string, givenName: string, familyName: string, email: string) {
     const data = {
       "userName": userName,
-    "name": {
         "givenName": givenName, 
         "familyName": familyName,
-        "honorificPrefix": honorificPrefix
-    },
-    "emails": [{"value":email}]
+        "value": email
     }
  
     console.log(data)
    return this.http
       .post<any>(
         `${this.registerUrl}`,
-        data, { headers:headers }
+        data
       )
 
   }
