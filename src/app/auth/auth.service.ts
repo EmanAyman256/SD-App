@@ -9,13 +9,16 @@ import { environment } from '../environments/environment';
   providedIn: 'root',
 })
 export class AuthService {  
+
   private authUrl = environment.authUrl;
   baseUrl=environment.apiUrl
-  registerUrl=environment.usersUrl
+  // registerUrl=environment.usersUrl
   private clientID=environment.clientId
   private clientsecret=environment.secretClient
+
   loggedInUser = new BehaviorSubject<AuthModel | null>(null);
   private tokenExpirationTimer: any;
+
   constructor(private http: HttpClient,private router:Router) {}
 
   Login(email: string, password: string) {
@@ -28,7 +31,7 @@ export class AuthService {
     data.set('username', email);
     data.set('password', password);
     return this.http
-      .post<AuthResponseBackend>(`${this.authUrl}`,data.toString(),{ headers })
+      .post<AuthResponseBackend>(`${this.baseUrl}/accounts/login`,data.toString(),{ headers })
       .pipe(
         tap((resData) => {
           const user=new AuthModel(email,resData.id_token);
@@ -42,19 +45,20 @@ export class AuthService {
   }
 
   signUp(userName: string, givenName: string, familyName: string, email: string) {
+  
+    // const headers=new HttpHeaders({
+    //   Authorization: 'Basic ' + btoa(`${this.clientID}:${this.clientsecret}`),
+    //   'Content-Type': 'application/json',
+    // })
     const data = {
-      "userName": userName,
+        "userName": userName,
         "givenName": givenName, 
         "familyName": familyName,
         "value": email
     }
- 
-    console.log(data)
+   console.log(data)
    return this.http
-      .post<any>(
-        `${this.registerUrl}`,
-        data
-      )
+      .post<any>(`${this.baseUrl}/accounts`,data)
 
   }
   logout() {
