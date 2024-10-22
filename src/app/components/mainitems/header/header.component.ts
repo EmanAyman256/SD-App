@@ -8,16 +8,16 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit{
+  token=localStorage.getItem("token")
 
   constructor(private authService:AuthService,private router:Router){}
   isAuthenticated=false
-   token=localStorage.getItem('token')
   ngOnInit() {
     this.authService.loggedInUser.subscribe(user=>{
       this.isAuthenticated=!!user
-
     })
   }
+ 
   logout()
   {
     this.authService.logout()

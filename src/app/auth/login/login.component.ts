@@ -37,7 +37,6 @@ export class LoginComponent {
 
   onSubmit() {
     this.submitted = true;
-     // reset alerts on submit
      this.alertService.clear();
 
     if (this.form.invalid) {
@@ -47,9 +46,9 @@ export class LoginComponent {
     this.authService.Login(this.f['username'].value, this.f['password'].value)
       .pipe(first())
       .subscribe({
-        next: () => {
-          // this.oauthService.initImplicitFlow();
-          // console.log(this.oauthService.initImplicitFlow());
+        next: (data) => {
+          console.log(data);
+               
           this.router.navigate(['/tendering']);
         },
         error: error => {

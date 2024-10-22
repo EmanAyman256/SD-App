@@ -73,7 +73,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';  // Import ConfirmD
   ],
   providers: [
     {
-    provide:HTTP_INTERCEPTORS,
+    provide:HTTP_INTERCEPTORS ,
     useClass:AuthInterceptor,
     multi:true
   },

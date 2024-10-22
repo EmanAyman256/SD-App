@@ -96,8 +96,7 @@
           "defaultConfiguration": "development",
         
           "options": {
-            "browserTarget": "SD-App:build"
-          }
+            "browserTarget": "SD-App:build"          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",

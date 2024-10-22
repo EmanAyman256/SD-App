@@ -15,16 +15,13 @@ export class AuthGuard implements CanActivate{
             const isAuth= !!user
             if(isAuth)
             {
+                console.log("USEE IS AUTHENTICATED")
                 return true
             }
            
-           this.router.createUrlTree(['/login'])
            this.router.navigate(['/login'])
-           return false
 
-            
-           
-            
+            return false
         }))
         
     }
