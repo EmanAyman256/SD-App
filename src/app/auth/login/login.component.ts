@@ -1,8 +1,7 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { catchError, first, throwError } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {  Router } from '@angular/router';
+import {  first } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { AlertService } from 'src/app/shared/alert.service';
 @Component({
@@ -18,7 +17,6 @@ export class LoginComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
 
     private router: Router,
     private authService: AuthService,

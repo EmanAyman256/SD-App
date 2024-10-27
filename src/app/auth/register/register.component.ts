@@ -1,8 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { catchError, first, throwError } from 'rxjs';
+import { first } from 'rxjs';
 import Swal from 'sweetalert2';
 import { AuthService } from '../auth.service';
 import { MessageService } from 'primeng/api';
@@ -32,9 +32,7 @@ export class RegisterComponent{
       private formBuilder: FormBuilder,
       private route: ActivatedRoute,
       private router: Router,
-      private authService: AuthService,
-      private messageService: MessageService
-  ) { }
+      private authService: AuthService  ) { }
 
   ngOnInit() {
       this.form = this.formBuilder.group({

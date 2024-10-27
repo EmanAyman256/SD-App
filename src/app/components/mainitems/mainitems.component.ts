@@ -7,7 +7,6 @@ import { UnitOfMeasure } from 'src/app/models/uom.model';
 import { ApiServiceService } from 'src/app/services/api-service.service';
 import * as FileSaver from 'file-saver';
 import { AuthService } from 'src/app/auth/auth.service';
-import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-mainitems',
@@ -112,7 +111,7 @@ export class MainitemsComponent implements OnInit {
     }
   }
 }
-constructor(private auth:AuthService,private Apiservice:ApiServiceService,private messageService: MessageService, private confirmationService: ConfirmationService){}
+constructor(private Apiservice:ApiServiceService,private messageService: MessageService, private confirmationService: ConfirmationService){}
 
 ngOnInit() {
     this.Apiservice.getServices<ServiceInfo[]>().subscribe(response => {

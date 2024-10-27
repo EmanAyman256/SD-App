@@ -37,11 +37,8 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/@fundamental-ngx/core/styles/fundamental-ngx-core.css",
-              "./node_modules/fundamental-styles/dist/fonts/sap_fonts.css",
-              "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeicons/primeicons.css",
-              "node_modules/primeflex/primeflex.css",
               "src/styles.css"
 
             ],
@@ -52,9 +49,17 @@
           },
           "configurations": {
             "production": {
+              "buildOptimizer": true,
+              "optimization": true,
+              "aot": true,
+              "vendorChunk": true,
+              "extractLicenses": true,
+              "sourceMap": true,
+
+
               "budgets": [
                 {
-                  
+
                     "type": "initial",
                     "maximumWarning": "5mb",
                     "maximumError": "5mb"
@@ -73,9 +78,8 @@
               "optimization": true,
               "vendorChunk": true,
               "extractLicenses": true,
-              "sourceMap": true,
-              "outputHashing": "all",
-              "namedChunks": true
+              "sourceMap": true
+           
             }
           },
           "defaultConfiguration": "production"
