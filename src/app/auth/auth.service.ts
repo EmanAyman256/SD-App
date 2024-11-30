@@ -10,7 +10,6 @@ import { environment } from '../environments/environment';
 })
 export class AuthService {  
 
-  private authUrl = environment.authUrl;
   baseUrl=environment.apiUrl
   // registerUrl=environment.usersUrl
   private clientID=environment.clientId
