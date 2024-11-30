@@ -27,7 +27,8 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
 import { AlertComponent } from './shared/alert/alert.component';
 import { TruncateWordsPipe } from './pipes/truncate-words.pipe';
 import { SearchPipe } from './pipes/search.pipe';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';  // Import ConfirmDialogModule
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { HasroleDirective } from './shared/hasrole.directive';  // Import ConfirmDialogModule
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';  // Import ConfirmD
     AlertComponent,
     TruncateWordsPipe,
     SearchPipe,
+    HasroleDirective,
 
   ],
   imports: [

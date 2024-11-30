@@ -5,6 +5,7 @@ import { AuthModel, AuthResponseBackend } from './models/user.model';
 import { BehaviorSubject, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { environment } from '../environments/environment';
+import { jwtDecode } from 'jwt-decode';
 @Injectable({
   providedIn: 'root',
 })
@@ -19,7 +20,12 @@ export class AuthService {
   private tokenExpirationTimer: any;
 
   constructor(private http: HttpClient,private router:Router) {}
+  hasRole(requiredRole:string)
+  {
+    const user=this.loggedInUser.value
+    
 
+  }
   Login(email: string, password: string) {
     const headers = new HttpHeaders({
       Authorization: 'Basic ' + btoa(`${this.clientID}:${this.clientsecret}`),
@@ -33,7 +39,11 @@ export class AuthService {
       .post<AuthResponseBackend>(`${this.baseUrl}/accounts/login`,data.toString(),{ headers })
       .pipe(
         tap((resData) => {
-          const user=new AuthModel(email,resData.id_token);
+          let decoded: any;
+                    decoded = jwtDecode(resData.id_token);
+                    const userRoles = decoded.groups || [];
+
+          const user=new AuthModel(email,resData.id_token,userRoles);
           console.log('Access Token:', resData.id_token);
           localStorage.setItem('token', resData.id_token);
           this.loggedInUser.next(user);

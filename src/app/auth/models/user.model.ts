@@ -1,6 +1,9 @@
 export class AuthModel{
    
-    constructor(public email:string,private _token:string){}
+    constructor(
+        public email:string,
+        private _token:string,
+       public roles:string[]){}
     get token() {
         return this._token;
     }
