@@ -95,7 +95,7 @@
                   field="rating" /></th>
           <th style="min-width: 10rem;" pResizableColumn pSortableColumn="rating">Currency <p-sortIcon
                   field="rating" /></th>
-          <th style="min-width: 10rem;" pResizableColumn pSortableColumn="rating">Totla <p-sortIcon field="rating" />
+          <th style="min-width: 10rem;" pResizableColumn pSortableColumn="rating" *appHasrole="admin">Total <p-sortIcon field="rating" />
           </th>
           <th style="min-width: 10rem;" pResizableColumn pSortableColumn="rating">ProfitMargin % <p-sortIcon
                   field="rating" /></th>
@@ -184,7 +184,6 @@
               </p-cellEditor>
           </td>
           <td style="min-width: 9.5rem;">
-
               <p-cellEditor>
                   <ng-template pTemplate="input">
                       <ng-container *ngIf="!updatedFormulaRecord">
@@ -411,7 +410,7 @@
                       <th style="min-width: 10rem;background-color: #dedede;" pResizableColumn
                           pSortableColumn="rating">Currency <p-sortIcon field="rating" /></th>
                       <th style="min-width: 10rem;background-color: #dedede;" pResizableColumn
-                          pSortableColumn="rating">Totla <p-sortIcon field="rating" />
+                          pSortableColumn="rating">Total <p-sortIcon field="rating" *appHasrole="admin"/>
                       </th>
                       <th style="min-width: 10rem;background-color: #dedede;" pResizableColumn
                           pSortableColumn="rating">ProfitMargin % <p-sortIcon field="rating" /></th>

@@ -20,12 +20,7 @@ export class AuthService {
   private tokenExpirationTimer: any;
 
   constructor(private http: HttpClient,private router:Router) {}
-  hasRole(requiredRole:string)
-  {
-    const user=this.loggedInUser.value
-    
 
-  }
   Login(email: string, password: string) {
     const headers = new HttpHeaders({
       Authorization: 'Basic ' + btoa(`${this.clientID}:${this.clientsecret}`),
