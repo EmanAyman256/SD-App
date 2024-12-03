@@ -4,6 +4,7 @@ import {  Router } from '@angular/router';
 import {  first } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { AlertService } from 'src/app/shared/alert.service';
+import { jwtDecode } from 'jwt-decode';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -32,7 +33,7 @@ export class LoginComponent {
 
   // for easy access to form fields
   get f() { return this.form.controls; }
-
+roles:string[]=[]
   onSubmit() {
     this.submitted = true;
      this.alertService.clear();
@@ -46,6 +47,12 @@ export class LoginComponent {
       .subscribe({
         next: (data) => {
           console.log(data);
+        //   const token=data.id_token
+        //   let decoded: any;
+        //   decoded = jwtDecode(token);
+        //  // const decoded: JwtPayload = jwtDecode(token);
+        //   this.roles = decoded.groups || [];
+        //   console.log(this.roles);
                
           this.router.navigate(['/tendering']);
         },
@@ -54,6 +61,7 @@ export class LoginComponent {
           this.loading = false;
         }
       });
+
   }
 
 }

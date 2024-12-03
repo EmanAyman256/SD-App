@@ -12,6 +12,7 @@ import { jwtDecode } from 'jwt-decode';
 export class AuthService {  
 
   baseUrl=environment.apiUrl
+  authUrl=environment.authUrl
   // registerUrl=environment.usersUrl
   private clientID=environment.clientId
   private clientsecret=environment.secretClient
@@ -30,6 +31,7 @@ export class AuthService {
     data.set('grant_type', 'password');
     data.set('username', email);
     data.set('password', password);
+    //${this.baseUrl}/accounts/login
     return this.http
       .post<AuthResponseBackend>(`${this.baseUrl}/accounts/login`,data.toString(),{ headers })
       .pipe(
@@ -37,7 +39,8 @@ export class AuthService {
           let decoded: any;
                     decoded = jwtDecode(resData.id_token);
                     const userRoles = decoded.groups || [];
-
+                    console.log(userRoles);
+                    
           const user=new AuthModel(email,resData.id_token,userRoles);
           console.log('Access Token:', resData.id_token);
           localStorage.setItem('token', resData.id_token);
@@ -47,7 +50,24 @@ export class AuthService {
         })
       );
   }
+  // getUserRoles(): string[] {
+  //   const user = this.loggedInUser.value;
+  //   return user ? user.roles : [];
+  // }
+  hasRole(requiredRole:string[]|string)
+  {
+    const token=localStorage.getItem("token")
+    if(token)
+    {
+      const user=this.loggedInUser.value
+      let decoded: any;
+      decoded = jwtDecode(token);
+      const userRoles = decoded.groups || [];
 
+    }
+   // const decoded: JwtPayload = jwtDecode(token);
+
+  }
   signUp(userName: string, givenName: string, familyName: string, email: string) {
   
     // const headers=new HttpHeaders({
@@ -80,4 +100,5 @@ export class AuthService {
       this.logout();
     }, expirationDuration);
   }
+
 }

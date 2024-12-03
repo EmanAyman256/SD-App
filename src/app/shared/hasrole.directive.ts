@@ -2,9 +2,9 @@ import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 
 @Directive({
-  selector: '[appHasrole]'
+  selector: '[appHasRole]' // Attribute selector
 })
-export class HasroleDirective {
+export class HasRoleDirective {
   private currentUserRoles: string[] = [];
 
   constructor(
@@ -12,27 +12,21 @@ export class HasroleDirective {
     private templateRef: TemplateRef<any>,
     private viewContainer: ViewContainerRef
   ) {
-    // Subscribe to changes in the logged-in user
-    this.authService.loggedInUser.subscribe(user => {
-      this.currentUserRoles = user ? user.roles : [];
-      this.updateView();
-    });
-  }
-  private requiredRole: string = '';
+  //   // Get roles from the token
+  //   this.currentUserRoles = this.authService.getUserRoles();
+  // }
 
-  @Input()
-  set appHasRole(role: string) {
-    this.requiredRole = role;
-    this.updateView();
-  }
+  // @Input()
+  // set appHasRole(requiredRoles: string | string[]) {
+  //   const rolesArray = Array.isArray(requiredRoles) ? requiredRoles : [requiredRoles];
+  //   const hasAccess = rolesArray.some(role => this.currentUserRoles.includes(role));
 
-  private updateView(): void {
-    if (this.currentUserRoles.includes(this.requiredRole)) {
-      // If the user has the required role, show the element
-      this.viewContainer.createEmbeddedView(this.templateRef);
-    } else {
-      // Otherwise, clear the view
-      this.viewContainer.clear();
-    }
+  //   if (hasAccess) {
+  //     // If user has access, display the element
+  //     this.viewContainer.createEmbeddedView(this.templateRef);
+  //   } else {
+  //     // Otherwise, clear the view
+  //     this.viewContainer.clear();
+  //   }
   }
 }

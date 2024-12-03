@@ -28,7 +28,7 @@ import { AlertComponent } from './shared/alert/alert.component';
 import { TruncateWordsPipe } from './pipes/truncate-words.pipe';
 import { SearchPipe } from './pipes/search.pipe';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { HasroleDirective } from './shared/hasrole.directive';  // Import ConfirmDialogModule
+import { HasRoleDirective } from './shared/hasrole.directive';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,7 @@ import { HasroleDirective } from './shared/hasrole.directive';  // Import Confir
     AlertComponent,
     TruncateWordsPipe,
     SearchPipe,
-    HasroleDirective,
+    HasRoleDirective,
 
   ],
   imports: [
